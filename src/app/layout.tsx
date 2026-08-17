@@ -1,0 +1,19 @@
+import type { Metadata } from "next";
+import "./globals.css";
+import { Providers } from "./providers";
+
+export const metadata: Metadata = {
+  title: "Kabar Sayap",
+  description:
+    "Kabar Sayap — kirim pesan lewat burung kurir virtual. Slow down. Let the bird carry it.",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html lang="id" className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}

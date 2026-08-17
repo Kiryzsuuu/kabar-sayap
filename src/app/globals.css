@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --background: #f7f3ea;
+  --surface: #fffdf8;
+  --surface-raised: #ffffff;
+  --foreground: #2a2018;
+  --muted-foreground: #7a6e5c;
+  --border: #e6dfce;
+  --border-strong: #d8cdb4;
+
+  /* Wayang & batik accents */
+  --gold: #b8863b;
+  --gold-soft: #d8ae6c;
+  --maroon: #7a2e26;
+  --indigo: #2e3a52;
+  --sogan: #8c5a2b;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Inter", Arial,
+    sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "Menlo", monospace;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-maroon: var(--maroon);
+  --color-indigo: var(--indigo);
+  --color-sogan: var(--sogan);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* subtle batik kawung watermark, reusable */
+.batik-watermark {
+  position: relative;
+  isolation: isolate;
+}
+
+.batik-watermark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.05;
+  background-image: radial-gradient(
+      circle at 0 0,
+      var(--sogan) 0 6px,
+      transparent 7px
+    ),
+    radial-gradient(circle at 24px 24px, var(--sogan) 0 6px, transparent 7px);
+  background-size: 48px 48px;
+}
+
+.gilt-border {
+  border-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--gold-soft),
+      var(--gold),
+      var(--gold-soft),
+      transparent
+    )
+    1;
+}
+
+::selection {
+  background: var(--gold-soft);
+  color: var(--foreground);
+}
+
+/* leaflet overrides to match broken-white theme */
+.leaflet-container {
+  background: var(--background);
+  font-family: var(--font-sans);
+}
+.leaflet-control-attribution {
+  background: rgba(255, 253, 248, 0.8) !important;
+  font-size: 10px;
+}
